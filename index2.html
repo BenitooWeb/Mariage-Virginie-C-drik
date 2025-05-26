@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Virginie & Cédric - 30 Mai 2025</title>
+    <style>
+        /* Styles généraux */
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Playfair Display', serif;
+            color: #fff;
+            overflow-x: hidden;
+            height: 100%;
+            scroll-behavior: smooth;
+        }
+        
+        /* Page d'accueil */
+        .home-page {
+            height: 100vh;
+            background: url('https://pikaso.cdnpk.net/private/production/1930136894/render.png?token=exp=1759017600~hmac=d997be6f448257f1994becaebfba777de92099ddf17823a1e839f0dc5ac41463') no-repeat center center;
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            padding: 5vw;
+            box-sizing: border-box;
+        }
+        
+        .names-container {
+            align-self: flex-start;
+            margin-top: 10vh;
+        }
+        
+        .names {
+            font-size: 5vw;
+            letter-spacing: 3px;
+            margin: 0;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            font-weight: 400;
+            line-height: 1.2;
+            text-align: left;
+        }
+        
+        .ampersand {
+            font-size: 3vw;
+            margin: 1vw 0;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            font-weight: 400;
+            text-align: left;
+        }
+        
+        .date-container {
+            position: absolute;
+            bottom: 5vw;
+            right: 5vw;
+            text-align: right;
+        }
+        
+        .date {
+            font-size: 2vw;
+            letter-spacing: 2px;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            font-weight: 400;
+            margin: 0;
+        }
+        
+        .scroll-indicator {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #fff;
+            font-size: 14px;
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0) translateX(-50%);}
+            40% {transform: translateY(-20px) translateX(-50%);}
+            60% {transform: translateY(-10px) translateX(-50%);}
+        }
+        
+        /* Page de dépôt - Fond mieux cadré */
+        .upload-page {
+            height: 100vh;
+            background: url('https://pikaso.cdnpk.net/private/production/1934304915/asset.jpg?token=exp=1759017600~hmac=9c5794d74d35b53171a181bb26b9da73ea447b7761631329a7c3e10df211c1fa') no-repeat center center;
+            background-size: cover;
+            background-position: center 30%; /* Ajustement du cadrage vertical */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8vw;
+            position: relative;
+        }
+        
+        .upload-content {
+            max-width: 800px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 8px;
+            color: #5a4a3a;
+            box-shadow: 0 5px 30px rgba(0,0,0,0.2);
+        }
+        
+        .upload-header {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .upload-instructions {
+            margin-bottom: 30px;
+        }
+        
+        .dropbox-btn {
+            display: inline-block;
+            background: #8e6c88;
+            color: white;
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 20px 0;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            font-family: 'Playfair Display', serif;
+            letter-spacing: 1px;
+            text-align: center;
+        }
+        
+        .dropbox-btn:hover {
+            background: #6a5065;
+            transform: translateY(-2px);
+        }
+        
+        /* Page de citation - Fond mieux cadré */
+        .quote-page {
+            height: 100vh;
+            background: url('https://pikaso.cdnpk.net/private/production/1934304915/asset.jpg?token=exp=1759017600~hmac=9c5794d74d35b53171a181bb26b9da73ea447b7761631329a7c3e10df211c1fa') no-repeat center center;
+            background-size: cover;
+            background-position: center 70%; /* Ajustement différent pour varier */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8vw;
+            text-align: center;
+        }
+        
+        .quote-content {
+            max-width: 800px;
+            background: rgba(249, 245, 240, 0.85);
+            padding: 60px 40px;
+            border-radius: 8px;
+            color: #5a4a3a;
+            box-shadow: 0 5px 30px rgba(0,0,0,0.15);
+        }
+        
+        .quote-text {
+            font-size: 2.2vw;
+            line-height: 1.6;
+            font-style: italic;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        .quote-text::before,
+        .quote-text::after {
+            content: '"';
+            font-size: 3vw;
+            color: #8e6c88;
+            position: absolute;
+        }
+        
+        .quote-text::before {
+            top: -20px;
+            left: -30px;
+        }
+        
+        .quote-text::after {
+            bottom: -40px;
+            right: -30px;
+        }
+        
+        .signature {
+            font-size: 1.5vw;
+            margin-top: 50px;
+            color: #8e6c88;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .names { font-size: 8vw; }
+            .ampersand { font-size: 5vw; }
+            .date { font-size: 4vw; }
+            
+            .home-page {
+                padding: 30px;
+            }
+            
+            .names-container {
+                margin-top: 15vh;
+            }
+            
+            .date-container {
+                bottom: 30px;
+                right: 30px;
+            }
+            
+            .quote-text {
+                font-size: 5vw;
+            }
+            
+            .signature {
+                font-size: 4vw;
+            }
+            
+            .upload-content,
+            .quote-content {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Page d'accueil -->
+    <section class="home-page" id="home">
+        <div class="names-container">
+            <div class="names">Virginie</div>
+            <div class="ampersand">&</div>
+            <div class="names">Cédric</div>
+        </div>
+        
+        <div class="date-container">
+            <div class="date">30 MAI 2025</div>
+        </div>
+        
+        <div class="scroll-indicator">Défiler vers le bas</div>
+    </section>
+    
+    <!-- Page de dépôt -->
+    <section class="upload-page" id="upload">
+        <div class="upload-content">
+            <div class="upload-header">
+                <h1>Partagez vos souvenirs</h1>
+                <p>Nous vous invitons à déposer ici vos plus belles photos de notre journée</p>
+            </div>
+            
+            <div class="upload-instructions">
+                <h2>Comment participer ?</h2>
+                <ol>
+                    <li>Cliquez sur le bouton ci-dessous</li>
+                    <li>Sélectionnez vos photos favorites</li>
+                    <li>Ajoutez votre nom si vous le souhaitez</li>
+                    <li>Validez l'envoi</li>
+                </ol>
+                <p><small>Formats acceptés : JPG, PNG (20MB maximum par photo)</small></p>
+            </div>
+            
+            <!-- REMPLACER PAR VOTRE LIEN DROPBOX -->
+            <center>
+                <a href="https://www.dropbox.com/request/VOTRE_CODE_UNIQUE" class="dropbox-btn" target="_blank">
+                    DÉPOSER MES PHOTOS
+                </a>
+            </center>
+        </div>
+    </section>
+    
+    <!-- Page de citation -->
+    <section class="quote-page" id="quote">
+        <div class="quote-content">
+            <div class="quote-text">
+                L'amour, ce n'est pas dire "je t'aime" tout le temps<br>c'est rester unis dans les petites et grandes épreuves de la vie.
+            </div>
+            <div class="signature">Virginie & Cédric</div>
+        </div>
+    </section>
+
+    <script>
+        // Animation au scroll
+        window.addEventListener('wheel', function(e) {
+            if (e.deltaY > 0) {
+                scrollToNextSection();
+            } else if (e.deltaY < 0) {
+                scrollToPrevSection();
+            }
+        });
+        
+        // Mobile touch support
+        let touchStartY = 0;
+        document.addEventListener('touchstart', function(e) {
+            touchStartY = e.touches[0].clientY;
+        }, false);
+        
+        document.addEventListener('touchend', function(e) {
+            const touchEndY = e.changedTouches[0].clientY;
+            if (touchStartY - touchEndY > 50) {
+                scrollToNextSection();
+            } else if (touchEndY - touchStartY > 50) {
+                scrollToPrevSection();
+            }
+        }, false);
+        
+        function scrollToNextSection() {
+            const currentSection = getCurrentVisibleSection();
+            if (currentSection.nextElementSibling) {
+                currentSection.nextElementSibling.scrollIntoView({behavior: 'smooth'});
+            }
+        }
+        
+        function scrollToPrevSection() {
+            const currentSection = getCurrentVisibleSection();
+            if (currentSection.previousElementSibling) {
+                currentSection.previousElementSibling.scrollIntoView({behavior: 'smooth'});
+            }
+        }
+        
+        function getCurrentVisibleSection() {
+            const sections = document.querySelectorAll('section');
+            for (let section of sections) {
+                const rect = section.getBoundingClientRect();
+                if (rect.top >= 0 && rect.top <= window.innerHeight/2) {
+                    return section;
+                }
+            }
+            return sections[0];
+        }
+    </script>
+</body>
+</html>
